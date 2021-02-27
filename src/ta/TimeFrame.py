@@ -24,7 +24,7 @@ class TimeFrame:
    
         logger.info("initializing timeframe")
         
-        if kwargs.has_key('indicators'):
+        if 'indicators' in kwargs:
             if not type(kwargs['indicators']) is list:
                 logger.debug(self + "; indicators passed via keywords is not a list as required.")
             else: self.indicators = kwargs['indicators']
@@ -136,7 +136,7 @@ if __name__=='__main__':
     close = 12.20
     nrofticks = int(60 * 60 * 6.5) / 100 # one market day with one tick every second
     start = datetime.datetime.now()
-    for x in xrange(nrofticks):
+    for x in range(int(nrofticks)):
         c = (d, 12.34, 12.56, 12.11, close, 20192812)
         tf.handleTick(c[0], close)
         d = d + td
@@ -145,4 +145,4 @@ if __name__=='__main__':
     end = datetime.datetime.now()
     diff = end - start
     dfsec = float("" + str(diff.seconds) + "." + str(diff.microseconds))
-    print "Inserting %s candles took %s seconds. %s candles per second." % (nrofticks, dfsec, nrofticks / dfsec)
+    print("Inserting %s candles took %s seconds. %s candles per second." % (nrofticks, dfsec, nrofticks / dfsec))

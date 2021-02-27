@@ -27,7 +27,7 @@ class Strategy:
             for indicator in timeframe.indicators:
                 if indicator.signal() == False: return self.NOACTION
                 elif indicator.signal() != True:
-                    raise Exception, 'indicator signal should always be True or False; signal %s' % indicator.signal
+                    raise Exception('indicator signal should always be True or False; signal %s' % indicator.signal)
         return self.action
     
     

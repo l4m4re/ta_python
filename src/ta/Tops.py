@@ -62,7 +62,7 @@ class Tops(Indicator):
             else:
                 self.output.append(0) # added new code line 17-7-2006 !!!
                 self.output[self.mark[0]] = 0
-                for j in reversed(range(len(self.output)-1)):
+                for j in reversed(list(range(len(self.output)-1))):
                     if self.inputhigh[j] > high or self.inputlow[j] < low: # first non-inclusive bar
                         break
                 count = 0
@@ -140,7 +140,7 @@ class Tops(Indicator):
     # overloads
     def __str__(self):
         string = ''
-        for i in xrange(len(self.inputhigh)):
+        for i in range(len(self.inputhigh)):
             string+='%s\t%s\t%s\t%s\n' % (i+1, self.inputhigh[i], self.inputlow[i], self.output[i])
         return 'Tops():\n%s' % (string)
     def __repr__(self):
@@ -155,7 +155,7 @@ class Tops(Indicator):
     # signals
     def tops(self, number=6):
         result = []
-        for i in xrange(len(self.output)-1,-1,-1):
+        for i in range(len(self.output)-1,-1,-1):
             if self.output[i] != 0: 
                 result.insert(0, self.output[i]) # 'append' at the start
                 if len(result) == number: break
@@ -326,4 +326,4 @@ if __name__=='__main__':
           ]
     for i in input:
         ind.append(i)
-    print ind
+    print(ind)

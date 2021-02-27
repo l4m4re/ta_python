@@ -53,7 +53,7 @@ if __name__ == '__main__':
     sql = "SELECT date, time, open, high, low, close FROM candlesticks WHERE ticker_id=102 AND period=1 order by date, time limit 600"
     data = ta.execute(sql)
     
-    print "fetched candles"
+    print("fetched candles")
     
     for candle in data:
         d = datetime.datetime(candle[0].year, candle[0].month, candle[0].day) + candle[1]
@@ -64,7 +64,7 @@ if __name__ == '__main__':
             tf.handleTick(tick[0], tick[1])
             d = d + datetime.timedelta(0, 15)
             
-    print tf.times
-    print tf.indicators[0].output
+    print(tf.times)
+    print(tf.indicators[0].output)
     
     

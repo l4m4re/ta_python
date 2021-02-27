@@ -117,7 +117,7 @@ class CandleGenerator:
         hour = seconds / (60 * 60)
         minute = (seconds - hour * 60 * 60) / 60
         second = seconds - (hour * 60 * 60) - (minute * 60)
-        return datetime.time(hour, minute, second)
+        return datetime.time(int(hour), int(minute), int(second))
     
 if __name__=='__main__':
     tc = CandleGenerator(3)
@@ -137,8 +137,8 @@ if __name__=='__main__':
     
     start = datetime.datetime.now()
     for t in ticks:
-        print tc.processTick(t[0], t[1])
+        print(tc.processTick(t[0], t[1]))
     end = datetime.datetime.now()
     diff = end - start
     dfsec = float("" + str(diff.seconds) + "." + str(diff.microseconds))
-    print "Processing %s ticks took %s seconds." % (len(ticks), dfsec)
+    print("Processing %s ticks took %s seconds." % (len(ticks), dfsec))

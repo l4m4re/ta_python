@@ -7,6 +7,6 @@ import ta.Logger
 logger = ta.Logger.logger()
 
 s = Sma(4)
-print s
+print(s)
 
 logger.info("sma test logging")

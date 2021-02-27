@@ -21,7 +21,7 @@ class Sma(Indicator):
                 outputvalue = sum(self.input[(len(self.input)-self.parameter):len(self.input)]) / self.parameter
             except:
                 self.input = self.input[:-1]
-                raise IndicatorError, 'error calculating sma value; should never happen here'
+                raise IndicatorError('error calculating sma value; should never happen here')
         self.output.append(outputvalue)
         
     def revertToPreviousState(self):
@@ -32,14 +32,14 @@ class Sma(Indicator):
         
     def validateParameter(self, parameter):
         if type(parameter) is not int:
-            raise IndicatorError, 'invalid parameter for initializing Sma instance, should be an integer; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Sma instance, should be an integer; input: %s' % (self.parameter, ))
         if parameter < 1:
-            raise IndicatorError, 'invalid parameter for initializing Sma instance, should be an int > 0; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Sma instance, should be an int > 0; input: %s' % (self.parameter, ))
     
     # override functions
     def __str__(self):
         string = ''
-        for i in xrange(len(self.input)):
+        for i in range(len(self.input)):
             string+='%s\t%s\t%s\t%s\n' % (i+1, self.times[i], self.input[i], str(self.output[i])[:9])
         return 'Sma(%s):\n%s' % (self.parameter, string)
     def __repr__(self):

@@ -28,7 +28,7 @@ class Macd(Indicator):
                 self.input = self.input[:-1]
                 self.s_ema = self.s_ema[:-1]
                 self.l_ema = self.l_ema[:-1]
-                raise IndicatorError, 'error calculating macd value; reverting input data back to previous state'
+                raise IndicatorError('error calculating macd value; reverting input data back to previous state')
         self.output.append(outputvalue)
         ema_macd_candle = None
         # make fake candle for ema_macd
@@ -46,16 +46,16 @@ class Macd(Indicator):
     
     def validateParameter(self, parameter):
         if type(parameter) is not tuple:
-            raise IndicatorError, 'invalid parameter for initializing Macd instance, should be an tuple; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Macd instance, should be an tuple; input: %s' % (self.parameter, ))
         if len(parameter) != 3:
-            raise IndicatorError, 'invalid parameter for initializing Macd instance, should be an tuple with length 3 (e.g. 4,8,5); input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Macd instance, should be an tuple with length 3 (e.g. 4,8,5); input: %s' % (self.parameter, ))
         if parameter[0] >= parameter[1]:
-            raise IndicatorError, 'invalid parameter for initializing Macd instance, should be an tuple with length 3 (e.g. 4,8,5) and parameter 1 should be smaller than parameter 2; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Macd instance, should be an tuple with length 3 (e.g. 4,8,5) and parameter 1 should be smaller than parameter 2; input: %s' % (self.parameter, ))
     
     # overrided functions
     def __str__(self):
         string = ''
-        for i in xrange(len(self.input)):
+        for i in range(len(self.input)):
             string+='%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % (i+1, self.times[i], self.input[i], str(self.s_ema[i])[:7], str(self.l_ema[i])[:7], str(self.output[i])[:7], str(self.ema_macd[i]))
         return 'Macd(%s):\n%s' % (self.parameter, string)
     def __repr__(self):
@@ -90,4 +90,4 @@ if __name__=='__main__':
           ]
     for i in input:
         ind.append(i)
-    print ind
+    print(ind)

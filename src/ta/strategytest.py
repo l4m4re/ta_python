@@ -17,10 +17,10 @@ start = datetime.datetime.now()
 for d, close in tickdata:
     s.handleTick(d, close)
     if s.actionType() == Strategy.BUY:
-        print "BUY action after tick with time %s and value %s" % (d, close)
+        print("BUY action after tick with time %s and value %s" % (d, close))
 end = datetime.datetime.now()
 diff = end - start
 dfsec = float("" + str(diff.seconds) + "." + str(diff.microseconds))
-print "Inserting %s ticks in Strategy with two timeframes took %s seconds. %s candles per second." % (nrofticks, dfsec, nrofticks / dfsec)
+print("Inserting %s ticks in Strategy with two timeframes took %s seconds. %s candles per second." % (nrofticks, dfsec, nrofticks / dfsec))
 tops3 = s.timeframes[0].indicators[0]
-print len(tops3.output), len(tops3.times)
+print(len(tops3.output), len(tops3.times))

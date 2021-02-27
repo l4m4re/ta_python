@@ -29,7 +29,7 @@ class Atr(Indicator):
                 outputvalue = atr
             except:
                 self.tr = self.tr[:-1]
-                raise IndicatorError, 'error calculating atr value; reverting tr data back to previous state'
+                raise IndicatorError('error calculating atr value; reverting tr data back to previous state')
         self.output.append(outputvalue)
         
     def revertToPreviousState(self):
@@ -40,9 +40,9 @@ class Atr(Indicator):
         
     def validateParameter(self, parameter):
         if type(parameter) is not int:
-            raise IndicatorError, 'invalid parameter for initializing Atr instance, should be an integer; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Atr instance, should be an integer; input: %s' % (self.parameter, ))
         if parameter < 1:
-            raise IndicatorError, 'invalid parameter for initializing Atr instance, should be an int > 0; input: %s' % (self.parameter, )
+            raise IndicatorError('invalid parameter for initializing Atr instance, should be an int > 0; input: %s' % (self.parameter, ))
     
     def getAtr(self):
         if len(self.output) > 0: return self.output[-1]
@@ -51,7 +51,7 @@ class Atr(Indicator):
     # overrided functions
     def __str__(self):
         string = ''
-        for i in xrange(len(self.highs)):
+        for i in range(len(self.highs)):
             string+='%s\t%s\t%s\t%s\t%s\t%s\n' % (i+1, self.highs[i], self.lows[i], self.closes[i], self.tr[i], self.output[i])
         return 'Atr(%s):\n%s' % (self.parameter, string)
     def __repr__(self):
@@ -83,4 +83,4 @@ if __name__=='__main__':
           ]
     for i in input:
         ind.append(i)
-    print ind
+    print(ind)
